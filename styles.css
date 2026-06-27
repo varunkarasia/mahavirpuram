@@ -286,7 +286,7 @@ body.loaded #preloader{opacity:0;visibility:hidden}
 .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:36px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12)}
 .site-footer h5{color:#fff;font-size:1.05rem;margin-bottom:16px;letter-spacing:.03em}
 .site-footer p{font-size:.9rem;color:#e8d4b3;line-height:1.7}
-.foot-logo{background:#fff;border-radius:14px;padding:10px 14px;display:inline-block;margin-bottom:16px}
+.foot-logo{display:inline-block;margin-bottom:16px}.foot-logo img{filter:drop-shadow(0 2px 6px rgba(0,0,0,.35))}
 .foot-logo img{height:46px}
 .foot-links{list-style:none;display:flex;flex-direction:column;gap:10px}
 .foot-links a{font-size:.9rem;color:#e8d4b3;display:inline-flex;align-items:center;gap:8px}
@@ -391,3 +391,48 @@ body.loaded #preloader{opacity:0;visibility:hidden}
 .app-phone .scr .dots i:first-child{background:var(--gold-soft);width:18px;border-radius:4px}
 @media (max-width:760px){.app-promo{grid-template-columns:1fr;gap:28px;padding:30px;text-align:center}.app-feats{text-align:left}.app-cta{justify-content:center}.app-phone{order:-1}}
 @media (max-width:430px){.app-feats{grid-template-columns:1fr}.wa-fab{width:52px;height:52px}}
+
+/* ===== v3: fixes, search, liveliness ===== */
+/* compact, proportionate header donate */
+.nav-cta .btn--donate-desktop{padding:9px 20px;font-size:.9rem;border-radius:12px;box-shadow:0 6px 16px rgba(190,42,30,.22)}
+.nav-cta .btn--donate-desktop:hover{transform:translateY(-1px)}
+
+/* header search button */
+.search-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--maroon);cursor:pointer;display:grid;place-items:center;transition:.2s}
+.search-btn:hover{color:var(--red);border-color:var(--gold)}
+.search-btn svg{width:18px;height:18px}
+
+/* search overlay */
+.search-overlay{position:fixed;inset:0;z-index:200;background:rgba(58,13,8,.6);backdrop-filter:blur(6px);display:flex;align-items:flex-start;justify-content:center;padding:11vh 20px 20px;opacity:0;visibility:hidden;transition:.25s}
+.search-overlay.open{opacity:1;visibility:visible}
+.search-panel{width:100%;max-width:640px;background:var(--paper);border-radius:20px;box-shadow:var(--shadow-lg);overflow:hidden;transform:translateY(-16px);transition:.25s var(--ease)}
+.search-overlay.open .search-panel{transform:none}
+.search-top{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.search-top>svg{color:var(--red);flex-shrink:0;width:22px;height:22px}
+.search-top input{flex:1;border:none;outline:none;font:inherit;font-size:1.1rem;background:none;color:var(--ink)}
+.search-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.4rem;line-height:1;width:30px;height:30px;border-radius:8px}
+.search-close:hover{background:var(--cream-2);color:var(--maroon)}
+.search-results{max-height:52vh;overflow-y:auto;padding:8px}
+.search-results a{display:block;padding:12px 14px;border-radius:12px;text-decoration:none;transition:.15s}
+.search-results a:hover,.search-results a.sel{background:var(--cream-2)}
+.search-results .rt{font-family:var(--font-head);color:var(--maroon);font-size:1.06rem;display:flex;align-items:center;gap:8px}
+.search-results .rt svg{width:16px;height:16px;color:var(--red)}
+.search-results .rd{color:var(--muted);font-size:.86rem;margin-top:2px}
+.search-empty{padding:26px;text-align:center;color:var(--muted)}
+.search-hint{padding:11px 18px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);background:var(--cream)}
+
+/* liveliness: hover zoom on imagery */
+.card{overflow:hidden}
+.card .thumb{transition:transform .6s var(--ease)}
+.card:hover .thumb{transform:scale(1.07)}
+.split .media{transition:transform .6s var(--ease)}
+.split:hover .media{transform:scale(1.03)}
+/* gently floating lotus divider */
+.divider svg{animation:floaty 3.6s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+/* animated CTA gradient */
+.cta-band{background-size:170% 170%;animation:ctaGrad 14s ease infinite}
+@keyframes ctaGrad{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+/* soft pulse glow on primary CTA */
+.btn--gold{position:relative}
+@media (max-width:880px){.search-btn{width:40px;height:40px}}

@@ -3,7 +3,7 @@
   "use strict";
 
   /* ---------- i18n dictionary (UI + key content) ---------- */
-  var I18N={
+  var I18N=window.__I18N={
     en:{
       "nav.home":"Home","nav.about":"About","nav.mp":"Mahavirpuram","nav.blessings":"Blessings",
       "nav.donations":"Donations","nav.news":"News","nav.contact":"Contact","cta.donate":"Donate Now",
@@ -34,7 +34,7 @@
       "stat.area":"Square metres of sacred ground","stat.tirth":"Tirthankars honoured","stat.trees":"Sacred trees in the Udhyan","stat.all":"Vision for all humankind",
       "cta.title":"Be part of building a divine city","cta.body":"Mahavirpuram is not about religion alone — it serves the social, cultural and character-building needs of society. Your gift of time, service or means brings this vision to life.","cta.note":"Contributions are eligible for benefits under Section 80-G of the Income Tax Act, 1961.",
       "foot.blurb":"A knowledge commune and cultural & spiritual museum dedicated to Bhagwan Mahavir, rising on the Ahmedabad–Gandhinagar highway to share compassion, truth and non-violence with the world.",
-      "foot.explore":"Explore","foot.support":"Support","foot.reach":"Reach Us","foot.news":"Newsletter","foot.news.sub":"Receive updates on milestones and observances.","foot.subscribe":"Join","foot.rights":"All rights reserved.","foot.tax":"Tax benefits under Section 80-G, Income Tax Act 1961","wa.title":"Chat with us","wa.status":"Mahavirpuram · replies quickly","wa.msg":"Jai Jinendra! How can we help you today?","wa.start":"Start chat on WhatsApp","app.eyebrow":"Mobile App","app.title":"Take Mahavirpuram with you","app.sub":"Navkar Mantra, daily darshan, live aarti and one-tap donations — coming soon to Android.","app.f1":"Navkar Mantra & Aum","app.f2":"Daily Darshan & events","app.f3":"Live aarti on YouTube","app.f4":"Donate in a tap","app.soon":"Coming soon on","app.cta":"Get notified"
+      "foot.explore":"Explore","foot.support":"Support","foot.reach":"Reach Us","foot.news":"Newsletter","foot.news.sub":"Receive updates on milestones and observances.","foot.subscribe":"Join","foot.rights":"All rights reserved.","foot.tax":"Tax benefits under Section 80-G, Income Tax Act 1961","wa.title":"Chat with us","wa.status":"Mahavirpuram · replies quickly","wa.msg":"Jai Jinendra! How can we help you today?","wa.start":"Start chat on WhatsApp","app.eyebrow":"Mobile App","app.title":"Take Mahavirpuram with you","app.sub":"Navkar Mantra, daily darshan, live aarti and one-tap donations — coming soon to Android.","app.f1":"Navkar Mantra & Aum","app.f2":"Daily Darshan & events","app.f3":"Live aarti on YouTube","app.f4":"Donate in a tap","app.soon":"Coming soon on","app.cta":"Get notified","search.ph":"Search the site…","search.hint":"Try: donations, gaushala, Navkar Mantra, contact","search.empty":"No matches. Try another word.","search.label":"Search"
     },
     hi:{
       "nav.home":"मुख्य पृष्ठ","nav.about":"परिचय","nav.mp":"महावीरपुरम","nav.blessings":"आशीर्वाद",
@@ -66,7 +66,7 @@
       "stat.area":"वर्ग मीटर पावन भूमि","stat.tirth":"तीर्थंकरों को नमन","stat.trees":"उद्यान में पावन वृक्ष","stat.all":"समस्त मानवता हेतु संकल्प",
       "cta.title":"एक दिव्य नगरी के निर्माण का हिस्सा बनें","cta.body":"महावीरपुरम केवल धर्म नहीं — यह समाज की सामाजिक, सांस्कृतिक और चरित्र-निर्माण की आवश्यकताओं की सेवा करता है। आपका समय, सेवा या योगदान इस स्वप्न को साकार करता है।","cta.note":"योगदान आयकर अधिनियम, 1961 की धारा 80-G के अंतर्गत लाभ के पात्र हैं।",
       "foot.blurb":"भगवान महावीर को समर्पित एक ज्ञान-समुदाय एवं सांस्कृतिक व आध्यात्मिक संग्रहालय, जो अहमदाबाद–गांधीनगर राजमार्ग पर करुणा, सत्य और अहिंसा का संदेश विश्व तक पहुँचाने हेतु आकार ले रहा है।",
-      "foot.explore":"जानें","foot.support":"सहयोग","foot.reach":"संपर्क करें","foot.news":"न्यूज़लेटर","foot.news.sub":"पड़ावों और पर्वों की जानकारी पाएँ।","foot.subscribe":"जुड़ें","foot.rights":"सर्वाधिकार सुरक्षित।","foot.tax":"धारा 80-G, आयकर अधिनियम 1961 के अंतर्गत कर लाभ","wa.title":"हमसे चैट करें","wa.status":"महावीरपुरम · शीघ्र उत्तर","wa.msg":"जय जिनेन्द्र! हम आपकी कैसे सहायता करें?","wa.start":"WhatsApp पर चैट शुरू करें","app.eyebrow":"मोबाइल ऐप","app.title":"महावीरपुरम को साथ रखें","app.sub":"णमोकार मंत्र, दैनिक दर्शन, लाइव आरती और एक-टैप दान — शीघ्र ही Android पर।","app.f1":"णमोकार मंत्र एवं ॐ","app.f2":"दैनिक दर्शन एवं पर्व","app.f3":"YouTube पर लाइव आरती","app.f4":"एक टैप में दान","app.soon":"शीघ्र आ रहा है","app.cta":"सूचना पाएँ"
+      "foot.explore":"जानें","foot.support":"सहयोग","foot.reach":"संपर्क करें","foot.news":"न्यूज़लेटर","foot.news.sub":"पड़ावों और पर्वों की जानकारी पाएँ।","foot.subscribe":"जुड़ें","foot.rights":"सर्वाधिकार सुरक्षित।","foot.tax":"धारा 80-G, आयकर अधिनियम 1961 के अंतर्गत कर लाभ","wa.title":"हमसे चैट करें","wa.status":"महावीरपुरम · शीघ्र उत्तर","wa.msg":"जय जिनेन्द्र! हम आपकी कैसे सहायता करें?","wa.start":"WhatsApp पर चैट शुरू करें","app.eyebrow":"मोबाइल ऐप","app.title":"महावीरपुरम को साथ रखें","app.sub":"णमोकार मंत्र, दैनिक दर्शन, लाइव आरती और एक-टैप दान — शीघ्र ही Android पर।","app.f1":"णमोकार मंत्र एवं ॐ","app.f2":"दैनिक दर्शन एवं पर्व","app.f3":"YouTube पर लाइव आरती","app.f4":"एक टैप में दान","app.soon":"शीघ्र आ रहा है","app.cta":"सूचना पाएँ","search.ph":"साइट खोजें…","search.hint":"आज़माएं: दान, गौशाला, णमोकार मंत्र, संपर्क","search.empty":"कोई परिणाम नहीं। दूसरा शब्द आज़माएं।","search.label":"खोजें"
     },
     gu:{
       "nav.home":"મુખ્ય પૃષ્ઠ","nav.about":"પરિચય","nav.mp":"મહાવીરપુરમ","nav.blessings":"આશીર્વાદ",
@@ -98,7 +98,7 @@
       "stat.area":"ચોરસ મીટર પાવન ભૂમિ","stat.tirth":"તીર્થંકરોને નમન","stat.trees":"ઉદ્યાનમાં પાવન વૃક્ષ","stat.all":"સમગ્ર માનવજાત માટે સંકલ્પ",
       "cta.title":"એક દિવ્ય નગરીના નિર્માણનો ભાગ બનો","cta.body":"મહાવીરપુરમ માત્ર ધર્મ નથી — તે સમાજની સામાજિક, સાંસ્કૃતિક અને ચારિત્ર્ય-ઘડતરની જરૂરિયાતોની સેવા કરે છે. તમારો સમય, સેવા કે યોગદાન આ સ્વપ્નને સાકાર કરે છે.","cta.note":"યોગદાન આવકવેરા અધિનિયમ, 1961ની કલમ 80-G હેઠળ લાભને પાત્ર છે.",
       "foot.blurb":"ભગવાન મહાવીરને સમર્પિત એક જ્ઞાન-સમુદાય અને સાંસ્કૃતિક તથા આધ્યાત્મિક સંગ્રહાલય, જે અમદાવાદ–ગાંધીનગર હાઇવે પર કરુણા, સત્ય અને અહિંસાનો સંદેશ વિશ્વ સુધી પહોંચાડવા આકાર લઈ રહ્યું છે.",
-      "foot.explore":"જાણો","foot.support":"સહયોગ","foot.reach":"સંપર્ક કરો","foot.news":"ન્યૂઝલેટર","foot.news.sub":"પડાવો અને પર્વોની માહિતી મેળવો.","foot.subscribe":"જોડાઓ","foot.rights":"સર્વ હક્ક સુરક્ષિત.","foot.tax":"કલમ 80-G, આવકવેરા અધિનિયમ 1961 હેઠળ કર લાભ","wa.title":"અમારી સાથે ચેટ કરો","wa.status":"મહાવીરપુરમ · ઝડપી જવાબ","wa.msg":"જય જિનેન્દ્ર! અમે કેવી રીતે મદદ કરી શકીએ?","wa.start":"WhatsApp પર ચેટ શરૂ કરો","app.eyebrow":"મોબાઇલ એપ","app.title":"મહાવીરપુરમ સાથે રાખો","app.sub":"નવકાર મંત્ર, દૈનિક દર્શન, લાઇવ આરતી અને એક-ટેપ દાન — ટૂંક સમયમાં Android પર.","app.f1":"નવકાર મંત્ર અને ૐ","app.f2":"દૈનિક દર્શન અને પર્વ","app.f3":"YouTube પર લાઇવ આરતી","app.f4":"એક ટેપમાં દાન","app.soon":"ટૂંક સમયમાં","app.cta":"જાણ મેળવો"
+      "foot.explore":"જાણો","foot.support":"સહયોગ","foot.reach":"સંપર્ક કરો","foot.news":"ન્યૂઝલેટર","foot.news.sub":"પડાવો અને પર્વોની માહિતી મેળવો.","foot.subscribe":"જોડાઓ","foot.rights":"સર્વ હક્ક સુરક્ષિત.","foot.tax":"કલમ 80-G, આવકવેરા અધિનિયમ 1961 હેઠળ કર લાભ","wa.title":"અમારી સાથે ચેટ કરો","wa.status":"મહાવીરપુરમ · ઝડપી જવાબ","wa.msg":"જય જિનેન્દ્ર! અમે કેવી રીતે મદદ કરી શકીએ?","wa.start":"WhatsApp પર ચેટ શરૂ કરો","app.eyebrow":"મોબાઇલ એપ","app.title":"મહાવીરપુરમ સાથે રાખો","app.sub":"નવકાર મંત્ર, દૈનિક દર્શન, લાઇવ આરતી અને એક-ટેપ દાન — ટૂંક સમયમાં Android પર.","app.f1":"નવકાર મંત્ર અને ૐ","app.f2":"દૈનિક દર્શન અને પર્વ","app.f3":"YouTube પર લાઇવ આરતી","app.f4":"એક ટેપમાં દાન","app.soon":"ટૂંક સમયમાં","app.cta":"જાણ મેળવો","search.ph":"સાઇટ શોધો…","search.hint":"અજમાવો: દાન, ગૌશાળા, નવકાર મંત્ર, સંપર્ક","search.empty":"કોઈ પરિણામ નથી. બીજો શબ્દ અજમાવો.","search.label":"શોધો"
     }
   };
   var LANGS=[["en","English","English"],["hi","Hindi","हिन्दी"],["gu","Gujarati","ગુજરાતી"]];
@@ -218,6 +218,48 @@
     btn.addEventListener('click',function(){playing?stop():start();});
   }
 
+  var SEARCH_INDEX=[
+   {t:"Home",d:"Welcome to Mahavirpuram, the knowledge commune.",u:"index.html",k:"home welcome mahavir hero"},
+   {t:"Navkar Mahamantra",d:"The eternal prayer, with Aum ambience.",u:"index.html",k:"navkar namokar mantra aum prayer"},
+   {t:"Daily Darshan & Observances",d:"Sacred calendar, Paryushan and events.",u:"index.html",k:"darshan paryushan calendar events aarti samvatsari"},
+   {t:"The Five Vows",d:"Ahimsa, Satya, Asteya, Brahmacharya, Aparigraha.",u:"index.html",k:"vows ahimsa satya asteya brahmacharya aparigraha"},
+   {t:"Live & Latest (YouTube)",d:"Darshan, discourses and live aarti.",u:"index.html",k:"youtube live video aarti channel"},
+   {t:"About the Concept",d:"The vision and mission of Mahavirpuram.",u:"about-concept.html",k:"about concept vision mission museum"},
+   {t:"Management & Guidance",d:"Revered Gurus and trustees leading the mission.",u:"about-management.html",k:"management guru acharya leadership trustees"},
+   {t:"At a Glance",d:"The master plan and zones of the divine city.",u:"at-a-glance.html",k:"glance master plan zones facilities"},
+   {t:"Shri Vardhman Gaushala",d:"A shelter of compassion for cattle.",u:"gaushala.html",k:"gaushala cow shelter compassion adopt"},
+   {t:"Blessings",d:"Auspicious words that grace the beginning.",u:"blessings.html",k:"blessings aashirwad"},
+   {t:"Donation Plans",d:"Schemes, 80-G benefits and how to give.",u:"donation-plan.html",k:"donation donate daan schemes 80g contribute"},
+   {t:"Knowledge City",d:"MBA, MCA and Design education.",u:"donation-plan.html#knowledge",k:"knowledge city university education college mba mca design"},
+   {t:"Mobile App",d:"Take Mahavirpuram with you, coming soon to Android.",u:"donation-plan.html#app",k:"app android mobile play store"},
+   {t:"News & Events",d:"Milestones and observances.",u:"news.html",k:"news events updates"},
+   {t:"Contact Us",d:"Addresses, phone and enquiry form.",u:"contact.html",k:"contact address phone email map enquiry"}
+  ];
+  function initSearch(){
+    var ov=document.getElementById('searchOverlay'); if(!ov) return;
+    var inp=document.getElementById('searchInput'), res=document.getElementById('searchResults');
+    var openB=document.getElementById('searchOpen'), closeB=document.getElementById('searchClose');
+    var ic='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+    function dict(){return (window.__I18N&&window.__I18N[document.documentElement.lang])||{};}
+    function render(q){
+      q=(q||'').trim().toLowerCase();
+      var list = q? SEARCH_INDEX.filter(function(e){return (e.t+' '+e.d+' '+e.k).toLowerCase().indexOf(q)>-1;}) : SEARCH_INDEX.slice(0,8);
+      if(!list.length){var d=dict();res.innerHTML='<div class="search-empty">'+((d['search.empty'])||'No matches. Try another word.')+'</div>';return;}
+      res.innerHTML=list.map(function(e){return '<a href="'+e.u+'"><div class="rt">'+ic+e.t+'</div><div class="rd">'+e.d+'</div></a>';}).join('');
+    }
+    function open(){ov.classList.add('open');setTimeout(function(){inp.focus();},60);render(inp.value);}
+    function close(){ov.classList.remove('open');}
+    if(openB)openB.addEventListener('click',open);
+    if(closeB)closeB.addEventListener('click',close);
+    ov.addEventListener('click',function(e){if(e.target===ov)close();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+    if(inp){
+      inp.addEventListener('input',function(){render(inp.value);});
+      inp.addEventListener('keydown',function(e){if(e.key==='Enter'){var a=res.querySelector('a');if(a)window.location.href=a.getAttribute('href');}});
+    }
+    try{var q=new URLSearchParams(location.search).get('q');if(q){inp.value=q;open();}}catch(e){}
+  }
+
   function initWidget(){
     var w=document.getElementById('waWidget'); if(!w) return;
     var f=document.getElementById('waFab'), c=document.getElementById('waClose');
@@ -234,6 +276,6 @@
   setTimeout(function(){document.body.classList.add('loaded');},2500);
 
   document.addEventListener('DOMContentLoaded',function(){
-    initLang();initNav();initReveal();initSlider();initScrollUI();initAum();initWidget();initMisc();
+    initLang();initNav();initReveal();initSlider();initScrollUI();initAum();initWidget();initSearch();initMisc();
   });
 })();

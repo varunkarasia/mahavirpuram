@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://varunkarasia.github.io/mahavirpuram/sitemap.xml
