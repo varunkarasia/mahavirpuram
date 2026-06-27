@@ -64,10 +64,11 @@ function openStavan(i){
    '<div class="card"><span class="pill">'+s.cat+'</span><h2 class="'+cls()+'" style="margin:8px 0">'+esc(s.title[LANG]||s.title.en)+'</h2>'+
    '<div class="ltabs"><button data-ll="gu" '+(ll==='gu'?'class=on':'')+'>ગુજરાતી</button><button data-ll="hi" '+(ll==='hi'?'class=on':'')+'>हिन्दी</button><button data-ll="en" '+(ll==='en'?'class=on':'')+'>English</button></div>'+
    '<div class="lyrics '+lc+'">'+esc(s.lyr[ll])+'</div>'+
-   '<div class="meaning"><b>'+esc(t('meaning'))+':</b> '+esc(s.mean)+'</div>'+
+   '<div class="meaning"><b>'+esc(t('meaning'))+':</b> '+esc(s.mean)+'</div>'+'<div id="stPlayer" style="margin-top:12px"></div>'+
    '<div style="margin-top:14px"><a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query='+encodeURIComponent((s.title.en)+' jain')+'">▶ '+esc(t('listen'))+'</a></div></div>';
   document.getElementById('bk').addEventListener('click',renderAaradhana);
   view.querySelectorAll('.ltabs button').forEach(function(b){b.addEventListener('click',function(){ll=b.dataset.ll;draw();});});
+  var _sp=document.getElementById('stPlayer');if(_sp)makePlayer(_sp,s.lyr[ll],ll==='en'?'en-IN':(ll==='gu'?'gu-IN':'hi-IN'));
  }
  draw();
 }
@@ -168,6 +169,22 @@ var NAVKARSI={
  mean:'The Navkarsi pratyakhyan, taken after sunrise: I renounce all four kinds of food (asan, pan, khadim, swadim) for about one muhurta (≈48 minutes) reciting the Navkar, with the customary exceptions.'};
 function speak(txt){ if(!window.speechSynthesis)return; var u=new SpeechSynthesisUtterance(txt); u.lang='hi-IN'; u.rate=0.82; window.speechSynthesis.cancel(); window.speechSynthesis.speak(u); }
 
+function makePlayer(mount,text,lang){
+ mount.innerHTML='<div class="player"><button class="pbtn" data-a="play" aria-label="Play">▶</button><button class="pbtn stop" data-a="stop" aria-label="Stop">■</button><button class="pbtn rep" data-a="rep" aria-label="Repeat">↻</button><span class="pstat">Ready</span></div>';
+ var pb=mount.querySelector('[data-a=play]'),sb=mount.querySelector('[data-a=stop]'),rb=mount.querySelector('[data-a=rep]'),st=mount.querySelector('.pstat');
+ var repeat=false,state='idle';
+ function utter(){var u=new SpeechSynthesisUtterance(text);u.lang=lang||'hi-IN';u.rate=0.82;u.onstart=function(){state='playing';pb.innerHTML='⏸';st.textContent='Playing…';};u.onend=function(){if(repeat&&state==='playing'){window.speechSynthesis.speak(utter());}else{state='idle';pb.innerHTML='▶';st.textContent='Ready';}};return u;}
+ pb.addEventListener('click',function(){
+  if(!window.speechSynthesis){st.textContent='Audio not supported in this browser';return;}
+  if(state==='idle'){window.speechSynthesis.cancel();window.speechSynthesis.speak(utter());}
+  else if(state==='playing'){window.speechSynthesis.pause();state='paused';pb.innerHTML='▶';st.textContent='Paused';}
+  else{window.speechSynthesis.resume();state='playing';pb.innerHTML='⏸';st.textContent='Playing…';}
+ });
+ sb.addEventListener('click',function(){window.speechSynthesis.cancel();state='idle';pb.innerHTML='▶';st.textContent='Ready';});
+ rb.addEventListener('click',function(){repeat=!repeat;rb.classList.toggle('on',repeat);st.textContent=repeat?'Repeat on':'Ready';});
+}
+
+
 
 function renderPanchang(){
  var d=new Date();
@@ -194,9 +211,9 @@ function renderPanchang(){
     '<div class="tithi"><div class="l" style="font-size:.72rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase">Kalyanak</div><div class="big" style="font-size:1.1rem">\u2014</div><div style="font-size:.7rem;color:var(--muted)">connect panchang data</div></div>'+
    '</div>'+
    '<h3 style="margin:6px 0 10px">Choghadiya (day)</h3>'+choHtml+
-   '<h3 style="margin:18px 0 6px">Pachkhan timings</h3><div class="card" style="padding:6px 8px">'+pkHtml+'</div>'+'<h3 style="margin:18px 0 6px">Navkarsi Pachkhan</h3><div class="card"><div class="hi" style="font-size:1.05rem;color:var(--maroon);line-height:1.9">'+esc(NAVKARSI.dev)+'</div><div style="font-style:italic;color:var(--muted);margin-top:8px">'+esc(NAVKARSI.tr)+'</div><div style="color:var(--muted);font-size:.88rem;margin-top:6px">'+esc(NAVKARSI.mean)+'</div><button class="btn" id="nkListen" style="margin-top:10px">\u{1F50A} Listen</button></div>'+
+   '<h3 style="margin:18px 0 6px">Pachkhan timings</h3><div class="card" style="padding:6px 8px">'+pkHtml+'</div>'+'<h3 style="margin:18px 0 6px">Navkarsi Pachkhan</h3><div class="card"><div class="hi" style="font-size:1.05rem;color:var(--maroon);line-height:1.9">'+esc(NAVKARSI.dev)+'</div><div style="font-style:italic;color:var(--muted);margin-top:8px">'+esc(NAVKARSI.tr)+'</div><div style="color:var(--muted);font-size:.88rem;margin-top:6px">'+esc(NAVKARSI.mean)+'</div><div id="nkPlayer" style="margin-top:12px"></div></div>'+
    '<div class="note">Sunrise/sunset computed astronomically (\u00B12 min). Choghadiya &amp; Pachkhan derived from them. Nakshatra and Tithi are approximate; Kalyanak needs the Tirthankar kalyanak dataset \u2014 connect an authoritative Jain panchang for exact tithi, nakshatra, parv and kalyanak days.</div>';
-  var _lb=document.getElementById('nkListen');if(_lb)_lb.addEventListener('click',function(){speak(NAVKARSI.dev);});
+  var _np=document.getElementById('nkPlayer');if(_np)makePlayer(_np,NAVKARSI.dev,'hi-IN');
  }
  document.getElementById('city').addEventListener('change',draw);draw();
 }
