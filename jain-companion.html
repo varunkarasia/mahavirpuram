@@ -1,0 +1,68 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jain Daily Companion · Mahavirpuram</title>
+<meta name="description" content="Stavan, Stuti & Sajjhay with lyrics in Gujarati/Hindi/English, worldwide Jain Mandir directory, and daily Panchang with sunrise & sunset.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital@1&family=Mukta:wght@300;400;500;600;700&family=Rozha+One&family=Noto+Serif+Gujarati:wght@400;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--red:#BE2A1E;--maroon:#6E1512;--gold:#C49A35;--gold-soft:#E7D29A;--cream:#FBF4DE;--cream2:#F5E8C6;--paper:#FFFDF8;--ink:#2C1B12;--muted:#6E5C4D;--line:#E7D9BC}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:"Mukta",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}
+h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;color:var(--maroon);line-height:1.2}
+a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
+.gu{font-family:"Noto Serif Gujarati","Mukta",serif}.hi{font-family:"Noto Serif Devanagari","Mukta",serif}
+.head{background:var(--maroon);color:#fff;position:sticky;top:0;z-index:10}
+.head .wrap{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.head .b{display:flex;align-items:center;gap:11px}
+.head img{height:40px;background:#fff;border-radius:9px;padding:3px 6px}
+.head b{font-family:"Rozha One",serif;font-weight:400;font-size:1.15rem;color:#fff;line-height:1}
+.head span{display:block;font-size:.66rem;color:var(--gold-soft)}
+.lang{display:flex;gap:4px}
+.lang button{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:5px 12px;font-size:.8rem}
+.lang button.on{background:var(--gold);color:var(--maroon);border-color:var(--gold);font-weight:700}
+.tabs{max-width:1080px;margin:0 auto;display:flex;gap:6px;padding:14px 20px 0;flex-wrap:wrap}
+.tabs button{background:var(--paper);border:1px solid var(--line);border-radius:12px 12px 0 0;padding:11px 20px;font-weight:600;color:var(--maroon);font-size:.95rem}
+.tabs button.on{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+.wrap{max-width:1080px;margin:0 auto;padding:20px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(110,21,18,.05)}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:.7rem;color:var(--red);font-weight:700}
+.pill{display:inline-block;background:var(--cream2);border:1px solid var(--line);color:var(--maroon);border-radius:999px;font-size:.72rem;font-weight:600;padding:3px 10px}
+input,select{font-family:inherit;font-size:.95rem;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;width:100%}
+.btn{display:inline-flex;align-items:center;gap:7px;background:var(--red);color:#fff;border:none;font-weight:600;font-size:.85rem;padding:8px 14px;border-radius:9px}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--maroon)}
+.s-item{display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer}
+.s-item:hover{border-color:var(--gold)}
+.lyrics{white-space:pre-line;font-size:1.12rem;line-height:1.9;color:var(--maroon);background:var(--cream2);border-radius:12px;padding:16px 18px;margin-top:12px}
+.ltabs{display:flex;gap:6px;margin-top:12px}
+.ltabs button{background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:.82rem;font-weight:600;color:var(--maroon)}
+.ltabs button.on{background:var(--gold);color:#fff;border-color:var(--gold)}
+.meaning{font-style:italic;color:var(--muted);margin-top:10px;font-size:.95rem}
+.temple{display:flex;flex-direction:column;gap:6px}
+.temple h3{font-size:1.15rem}
+.temple .loc{font-size:.85rem;color:var(--muted)}
+.temple .row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px}
+.sun{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sunbox{background:linear-gradient(135deg,var(--maroon),var(--red));color:#fff;border-radius:16px;padding:20px;text-align:center}
+.sunbox .t{font-family:"Rozha One",serif;font-size:2rem;line-height:1}
+.sunbox .l{font-size:.8rem;color:var(--gold-soft);letter-spacing:.06em;text-transform:uppercase}
+.tithi{background:var(--cream2);border:1px solid var(--line);border-radius:16px;padding:20px;text-align:center}
+.tithi .big{font-family:"Rozha One",serif;color:var(--red);font-size:1.6rem}
+.note{font-size:.76rem;color:var(--muted);background:var(--cream2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin-top:14px}
+.back{color:var(--red);font-weight:600;font-size:.86rem;display:inline-block;margin-bottom:10px}
+footer{text-align:center;color:var(--muted);font-size:.8rem;padding:24px}
+@media(max-width:560px){.sun{grid-template-columns:1fr}}
+</style></head><body>
+<div class="head"><div class="wrap" style="padding-top:12px;padding-bottom:12px">
+  <div class="b"><img src="https://www.mahavirpuram.com/images/logo.png" alt="Mahavirpuram"><div><b>Jain Daily Companion</b><span>Mahavirpuram</span></div></div>
+  <div class="lang" id="lang"><button data-l="en" class="on">EN</button><button data-l="hi">हि</button><button data-l="gu">ગુ</button></div>
+</div></div>
+<div class="tabs" id="tabs">
+  <button data-t="aaradhana" class="on">Aaradhana</button>
+  <button data-t="mandir">Mandir Directory</button>
+  <button data-t="panchang">Panchang</button>
+  <button data-t="aahar">Aahar</button>
+  <button data-t="ecode">E-Codes</button>
+</div>
+<div class="wrap" id="view"></div>
+<footer>Prototype · content shown is traditional/sample and should be validated by your sangh. Sunrise/sunset computed; tithi is approximate — connect an authoritative panchang source for production.</footer>
+<script src="companion.js"></script>
+</body></html>

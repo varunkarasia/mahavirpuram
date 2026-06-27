@@ -208,8 +208,8 @@ body.loaded #preloader{opacity:0;visibility:hidden}
 .event-list{list-style:none;display:grid;gap:12px}
 .event-list li{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;transition:.25s var(--ease)}
 .event-list li:hover{transform:translateX(4px);border-color:var(--gold-soft);box-shadow:var(--shadow-sm)}
-.event-list .ed{flex-shrink:0;width:54px;text-align:center;background:var(--cream-2);border-radius:10px;padding:6px 0;line-height:1.1}
-.event-list .ed b{display:block;font-family:var(--font-head);color:var(--red);font-size:1.2rem}
+.event-list .ed{flex-shrink:0;min-width:54px;text-align:center;background:var(--cream-2);border-radius:10px;padding:6px 10px;line-height:1.15}
+.event-list .ed b{display:block;font-family:var(--font-head);color:var(--red);font-size:1.02rem;white-space:nowrap}
 .event-list .ed span{font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .event-list .et h4{font-size:1.04rem;color:var(--maroon);margin-bottom:2px}
 .event-list .et p{font-size:.86rem;color:var(--muted);margin:0}
