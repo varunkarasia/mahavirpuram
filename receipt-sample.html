@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Donation Receipt · Mahavirpuram</title>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Rozha+One&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<style>
+:root{--maroon:#6E1512;--red:#BE2A1E;--gold:#C49A35;--cream2:#F5E8C6;--line:#E7D9BC}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:"Mukta",system-ui,sans-serif;background:#efe6cd;padding:26px;color:#1a1a1a}
+.sheet{max-width:720px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(110,21,18,.16);overflow:hidden}
+.topbar{height:8px;background:linear-gradient(90deg,var(--maroon),var(--red),var(--gold))}
+.inner{padding:30px 34px}
+.rh{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--maroon);padding-bottom:14px;margin-bottom:6px}
+.rh .lt{display:flex;gap:14px;align-items:center}
+.rh img{height:62px}
+.rh h2{font-family:"Rozha One",serif;font-weight:400;color:var(--maroon);font-size:1.7rem;line-height:1}
+.rh .addr{font-size:.68rem;color:#555;max-width:330px;line-height:1.5;margin-top:4px}
+.rh .reg{font-size:.7rem;color:#555;text-align:right;line-height:1.6}
+.rtitle{text-align:center;font-weight:700;letter-spacing:.14em;color:var(--red);margin:14px 0;font-size:.86rem}
+.rrow{display:flex;justify-content:space-between;gap:16px;margin:5px 0;font-size:.92rem}
+.rbox{border:1px solid #e4dcc6;border-radius:10px;padding:13px 15px;margin:12px 0;background:#fcfaf3}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9rem}
+th{background:var(--cream2);color:var(--maroon);text-align:left;padding:9px 11px;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em}
+td{padding:10px 11px;border-bottom:1px solid #eee}
+.amt{font-weight:700;color:var(--red);text-align:right;white-space:nowrap}
+.words{font-style:italic;color:#333;margin:4px 0 0;font-size:.92rem}
+.legal{font-size:.72rem;color:#666;margin-top:12px;border-top:1px dashed #ddd;padding-top:8px}
+.foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:24px}
+.qr{text-align:center}.qr .cap{font-size:.66rem;color:#666;margin-top:4px}
+.sig{text-align:center}.sig .ln{border-top:1px solid #777;padding-top:5px;font-size:.78rem;color:#444;min-width:230px}
+.sig .cg{font-size:.66rem;color:#999;margin-top:4px}
+.actions{max-width:720px;margin:18px auto 0;text-align:center}
+.btn{display:inline-flex;gap:8px;align-items:center;background:var(--red);color:#fff;border:none;font:inherit;font-weight:600;padding:11px 22px;border-radius:10px;cursor:pointer}
+@media print{body{background:#fff;padding:0}.actions{display:none}.sheet{box-shadow:none;border-radius:0;max-width:100%}}
+</style></head><body>
+<div class="sheet">
+  <div class="topbar"></div>
+  <div class="inner">
+    <div class="rh">
+      <div class="lt"><img src="https://www.mahavirpuram.com/images/logo.png" alt="Mahavirpuram">
+        <div><h2>Shree Mahavirpuram</h2>
+        <div class="addr"><b>Reg. Office:</b> 7 Gokul Complex, Opp. Nagri Eye Hospital, Ellisbridge, Ahmedabad 380007<br><b>Project:</b> FP No. 47/1 &amp; 2, Koba-Raisan Rd., Near Raheja Mindspace, Off PDPU Rd., Juna Koba, Gandhinagar 382421, Gujarat, India</div></div>
+      </div>
+      <div class="reg">Trust Reg.: E/12724 AMD dt. 03 Dec 1999<br>PAN: AAETS1715Q<br>80G: AAETS1715QF20215</div>
+    </div>
+    <div class="rtitle">DONATION RECEIPT &middot; SECTION 80G</div>
+    <div class="rrow"><span>Receipt No: <b>2025061901</b></span><span>Date: <b>19/06/2025</b></span></div>
+    <div class="rbox">
+      <div class="rrow"><span>Received with thanks from</span><b>HBS Marineview Pvt. Ltd.</b></div>
+      <div class="rrow"><span>PAN of donor</span><b>AACCH8592H</b></div>
+      <div class="rrow"><span>Address</span><b style="max-width:320px;text-align:right">505 Ceejay House, Dr. Annie Besant Rd., Worli, Mumbai 400018</b></div>
+    </div>
+    <table>
+      <thead><tr><th>Description / Fund</th><th>Bank</th><th>Mode</th><th style="text-align:right">Amount</th></tr></thead>
+      <tbody><tr><td>Corpus Fund</td><td>HDFC Bank Ltd.</td><td>RTGS</td><td class="amt">&#8377;2,01,000.00</td></tr></tbody>
+    </table>
+    <div class="words">Amount in words: Two Lakh One Thousand Rupees Only.</div>
+    <div class="legal">Cheque subject to realisation. This receipt must be produced when demanded. Subject to Ahmedabad jurisdiction. Donations are eligible for deduction under Section 80G subject to applicable conditions.</div>
+    <div class="foot">
+      <div class="qr"><canvas id="qr"></canvas><div class="cap">Scan to verify &middot; 2025061901</div></div>
+      <div class="sig"><div style="height:44px"></div><div class="ln">For Shree Mahavirpuram &middot; Authorised Signatory</div><div class="cg">Computer-generated receipt</div></div>
+    </div>
+  </div>
+</div>
+<div class="actions"><button class="btn" onclick="window.print()">&#128424; Print / Save as PDF</button></div>
+<script>
+var url='https://varunkarasia.github.io/mahavirpuram/verify.html?r=2025061901&a=201000&d=19-06-2025&n='+encodeURIComponent('HBS Marineview Pvt. Ltd.');
+try{new QRious({element:document.getElementById('qr'),value:url,size:120,foreground:'#6E1512',background:'#ffffff',level:'M'});}catch(e){}
+</script></body></html>

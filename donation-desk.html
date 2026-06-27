@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Donation Desk · Mahavirpuram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;600;700&family=Rozha+One&display=swap" rel="stylesheet">
+<style>
+:root{--red:#BE2A1E;--red2:#9A1C12;--maroon:#6E1512;--gold:#C49A35;--gold-soft:#E7D29A;--cream:#FBF4DE;--cream2:#F5E8C6;--paper:#FFFDF8;--ink:#2C1B12;--muted:#6E5C4D;--line:#E7D9BC;--green:#1f9d57;--amber:#b5862a;--danger:#c0392b}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Mukta",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.55}
+h1,h2,h3,h4{font-family:"Rozha One",Georgia,serif;font-weight:400;color:var(--maroon);line-height:1.2}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit;font-size:.95rem;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(196,154,53,.15)}
+label{font-size:.78rem;font-weight:600;color:var(--maroon);display:block;margin-bottom:4px}
+.btn{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:.9rem;padding:10px 18px;border-radius:10px;border:1.5px solid transparent;background:var(--red);color:#fff;transition:.15s}
+.btn:hover{background:var(--red2)}
+.btn.gold{background:linear-gradient(135deg,#D9B24A,#C49A35)}
+.btn.ghost{background:#fff;border-color:var(--line);color:var(--maroon)}
+.btn.ghost:hover{border-color:var(--gold);background:var(--cream2)}
+.btn.sm{padding:6px 12px;font-size:.82rem;border-radius:8px}
+.btn.green{background:var(--green)}.btn.green:hover{filter:brightness(.95)}
+.muted{color:var(--muted)}.small{font-size:.82rem}
+.tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:600;border:1px solid var(--line);background:var(--cream2);color:var(--maroon)}
+.tag.anon{background:#f3e3c4;color:var(--amber)}
+.tag.online{background:#e7f3ec;color:var(--green);border-color:#bfe3cd}
+.tag.cash{background:#fdeceb;color:var(--red);border-color:#f3c4c0}
+
+/* login */
+#login{min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 0%,#7c1c14,#561010 80%);padding:20px}
+.login-card{background:var(--paper);border-radius:22px;box-shadow:0 30px 70px rgba(0,0,0,.35);width:100%;max-width:400px;padding:34px 30px;text-align:center}
+.login-card .logo{background:#fff;border-radius:14px;padding:8px 12px;display:inline-block;margin-bottom:14px}
+.login-card .logo img{height:42px;display:block}
+.login-card h1{font-size:1.5rem;margin-bottom:2px}
+.login-card .sub{color:var(--muted);font-size:.85rem;margin-bottom:20px}
+.login-card .field{text-align:left;margin-bottom:14px}
+.demo-note{margin-top:14px;font-size:.74rem;color:var(--muted);background:var(--cream2);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+
+/* app shell */
+#app{display:none;min-height:100vh;grid-template-columns:248px 1fr}
+.sidebar{background:var(--maroon);color:#f1e3c8;padding:18px 14px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+.sidebar .brand{display:flex;align-items:center;gap:10px;padding:4px 8px 14px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:10px}
+.sidebar .brand img{height:34px;background:#fff;border-radius:8px;padding:3px 5px}
+.sidebar .brand b{font-family:"Rozha One",serif;font-weight:400;color:#fff;font-size:1.05rem;line-height:1}
+.sidebar .brand span{display:block;font-size:.66rem;color:var(--gold-soft)}
+.navlink{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;color:#e8d4b3;font-size:.92rem;font-weight:500;transition:.15s}
+.navlink:hover{background:rgba(255,255,255,.08);color:#fff}
+.navlink.active{background:var(--red);color:#fff}
+.navlink svg{width:18px;height:18px;flex-shrink:0}
+.side-foot{margin-top:auto;font-size:.74rem;color:#d8c3a0;border-top:1px solid rgba(255,255,255,.12);padding-top:12px}
+.side-foot button{background:none;border:none;color:var(--gold-soft);font-size:.8rem;padding:4px 0}
+.main{padding:26px 30px;max-width:1180px}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px;flex-wrap:wrap}
+.toprow h2{font-size:1.7rem}
+.toprow .who{font-size:.82rem;color:var(--muted)}
+
+/* cards / layout */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:22px}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px}
+.kpi .lbl{font-size:.78rem;color:var(--muted);font-weight:600}
+.kpi .val{font-family:"Rozha One",serif;color:var(--red);font-size:1.8rem;line-height:1.1;margin-top:4px}
+.kpi .sub{font-size:.76rem;color:var(--muted)}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:20px}
+.panel h3{font-size:1.2rem;margin-bottom:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{text-align:left;background:var(--cream2);color:var(--maroon);font-weight:600;padding:9px 10px;font-size:.76rem;text-transform:uppercase;letter-spacing:.03em}
+td{padding:9px 10px;border-bottom:1px solid var(--line)}
+tr:hover td{background:var(--cream)}
+.amt{font-weight:700;color:var(--red);white-space:nowrap}
+.right{text-align:right}
+.bar{height:8px;border-radius:6px;background:var(--cream2);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--red))}
+.warn{background:#fdeceb;border:1px solid #f3c4c0;color:var(--red);border-radius:10px;padding:10px 12px;font-size:.82rem;margin-top:8px}
+.ok{background:#e7f3ec;border:1px solid #bfe3cd;color:var(--green);border-radius:10px;padding:10px 12px;font-size:.82rem}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tabs button{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:.85rem;font-weight:600;color:var(--maroon)}
+.tabs button.active{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+.banner{background:var(--cream2);border:1px dashed var(--gold);border-radius:12px;padding:10px 14px;font-size:.8rem;color:var(--maroon);margin-bottom:18px}
+.toast{position:fixed;right:18px;bottom:18px;background:var(--maroon);color:#fff;padding:12px 18px;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.3);font-size:.88rem;z-index:300;opacity:0;transform:translateY(10px);transition:.25s}
+.toast.show{opacity:1;transform:none}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(58,13,8,.55);display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;z-index:250;overflow:auto}
+.modal.open{display:flex}
+.modal-card{background:#fff;border-radius:16px;max-width:680px;width:100%;box-shadow:0 30px 70px rgba(0,0,0,.3)}
+/* 80G receipt */
+.receipt{padding:30px 34px;color:#1a1a1a;font-size:.9rem}
+.receipt .rh{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--maroon);padding-bottom:12px;margin-bottom:14px}
+.receipt .rh h2{font-size:1.5rem;color:var(--maroon)}
+.receipt .rh .reg{font-size:.72rem;color:#555;text-align:right;line-height:1.5}
+.receipt .rtitle{text-align:center;font-weight:700;letter-spacing:.12em;color:var(--red);margin:6px 0 14px;font-size:.82rem}
+.receipt .rrow{display:flex;justify-content:space-between;gap:16px;margin:5px 0}
+.receipt .rrow b{color:#000}
+.receipt .rbox{border:1px solid #ddd;border-radius:10px;padding:12px 14px;margin:12px 0;background:#fcfaf3}
+.receipt .words{font-style:italic;color:#333}
+.receipt .sign{margin-top:30px;display:flex;justify-content:space-between;align-items:flex-end}
+.receipt .sign .ln{border-top:1px solid #777;padding-top:4px;font-size:.78rem;color:#555;width:200px;text-align:center}
+.receipt .note{margin-top:14px;font-size:.7rem;color:#666;border-top:1px solid #eee;padding-top:8px}
+.modal-actions{display:flex;justify-content:flex-end;gap:10px;padding:12px 18px;border-top:1px solid var(--line)}
+@media print{body *{visibility:hidden}#receiptModal,#receiptModal *{visibility:visible}#receiptModal{position:absolute;inset:0;background:#fff;display:block;padding:0}.modal-actions{display:none}}
+@media(max-width:860px){#app{grid-template-columns:1fr}.sidebar{position:static;height:auto;flex-direction:row;flex-wrap:wrap;gap:4px}.side-foot{display:none}.grid2,.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="login-card">
+    <span class="logo"><img src="https://www.mahavirpuram.com/images/logo.png" alt="Mahavirpuram"></span>
+    <h1>Donation Desk</h1>
+    <div class="sub">Shree Mahavirpuram &middot; Staff Sign-in</div>
+    <div class="field"><label>Name</label><input id="liName" placeholder="Your name" value="Accounts User"></div>
+    <div class="field"><label>Role</label><select id="liRole"><option>Admin</option><option selected>Accountant</option><option>Volunteer</option></select></div>
+    <div class="field"><label>Passcode</label><input id="liPass" type="password" placeholder="Any code (demo)" value="demo"></div>
+    <button class="btn gold" style="width:100%;justify-content:center" id="loginBtn">Sign in</button>
+    <div class="demo-note">Prototype &mdash; demo sign-in only (no real authentication). Data is saved in this browser. Not legal/CA advice; have a Chartered Accountant validate before live use.</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <aside class="sidebar">
+    <div class="brand"><img src="https://www.mahavirpuram.com/images/logo.png" alt=""><div><b>Mahavirpuram</b><span>Donation Desk</span></div></div>
+    <a class="navlink" data-view="dashboard">&#9632; Dashboard</a>
+    <a class="navlink" data-view="new">&#43; New Donation</a>
+    <a class="navlink" data-view="bulk">&#9776; Bulk Entry</a>
+    <a class="navlink" data-view="register">&#9783; Donations</a>
+    <a class="navlink" data-view="donors">&#9787; Donors</a>
+    <a class="navlink" data-view="funds">&#9678; Funds</a>
+    <a class="navlink" data-view="online">&#9889; Online Payments</a>
+    <a class="navlink" data-view="reports">&#9745; Reports &amp; 10BD</a>
+    <a class="navlink" data-view="settings">&#9881; Settings</a>
+    <div class="side-foot"><div id="whoFoot"></div><button id="logoutBtn">Sign out</button><button id="resetBtn">Reset list (Till 2026)</button></div>
+  </aside>
+  <main class="main" id="main"></main>
+</div>
+
+<div class="modal" id="receiptModal"><div class="modal-card"><div class="receipt" id="receiptBody"></div><div class="modal-actions"><button class="btn ghost" onclick="document.getElementById('receiptModal').classList.remove('open')">Close</button><button class="btn" onclick="window.print()">Print / Save PDF</button></div></div></div>
+<div class="toast" id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script src="desk.js"></script>
+</body>
+</html>
