@@ -8,10 +8,10 @@
 h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;color:var(--maroon);line-height:1.2}
 a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 .gu{font-family:"Noto Serif Gujarati","Mukta",serif}.hi{font-family:"Noto Serif Devanagari","Mukta",serif}
-.head{background:var(--maroon);color:#fff;position:sticky;top:0;z-index:10}
+.head{background:linear-gradient(180deg,#7c1c14,var(--maroon));color:#fff;position:sticky;top:0;z-index:10;border-bottom:3px solid var(--gold)}
 .head .wrap{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .head .b{display:flex;align-items:center;gap:11px}
-.head img{height:40px;background:#fff;border-radius:9px;padding:3px 6px}
+.head img{height:46px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45))}
 .head b{font-family:"Rozha One",serif;font-weight:400;font-size:1.15rem;color:#fff;line-height:1}
 .head span{display:block;font-size:.66rem;color:var(--gold-soft)}
 .lang{display:flex;gap:4px}
@@ -21,7 +21,7 @@ a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
 .tabs button{background:var(--paper);border:1px solid var(--line);border-radius:12px 12px 0 0;padding:11px 20px;font-weight:600;color:var(--maroon);font-size:.95rem}
 .tabs button.on{background:var(--maroon);color:#fff;border-color:var(--maroon)}
 .wrap{max-width:1080px;margin:0 auto;padding:20px}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(110,21,18,.05)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(110,21,18,.05);transition:.2s}.card:hover{box-shadow:0 10px 26px rgba(110,21,18,.1)}
 .grid{display:grid;gap:16px}
 .g3{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
 .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:.7rem;color:var(--red);font-weight:700}
@@ -50,7 +50,10 @@ input,select{font-family:inherit;font-size:.95rem;padding:10px 12px;border:1px s
 .back{color:var(--red);font-weight:600;font-size:.86rem;display:inline-block;margin-bottom:10px}
 footer{text-align:center;color:var(--muted);font-size:.8rem;padding:24px}
 @media(max-width:560px){.sun{grid-template-columns:1fr}}
-</style></head><body>
+</style><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<style>.leaflet-container{font-family:"Mukta",sans-serif}.temple{transition:.2s}.temple:hover{border-color:var(--gold);box-shadow:0 6px 18px rgba(110,21,18,.1)}.srch{display:flex;gap:8px;align-items:center}.srch input{flex:1}.mic{width:42px;height:42px;flex-shrink:0;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--maroon);font-size:1.05rem;cursor:pointer}.mic.on{background:var(--red);color:#fff;animation:micp 1s infinite}@keyframes micp{50%{opacity:.55}}</style>
+</head><body>
 <div class="head"><div class="wrap" style="padding-top:12px;padding-bottom:12px">
   <div class="b"><img src="https://www.mahavirpuram.com/images/logo.png" alt="Mahavirpuram"><div><b>Jain Daily Companion</b><span>Mahavirpuram</span></div></div>
   <div class="lang" id="lang"><button data-l="en" class="on">EN</button><button data-l="hi">हि</button><button data-l="gu">ગુ</button></div>
@@ -61,6 +64,7 @@ footer{text-align:center;color:var(--muted);font-size:.8rem;padding:24px}
   <button data-t="panchang">Panchang</button>
   <button data-t="aahar">Aahar</button>
   <button data-t="ecode">E-Codes</button>
+  <button data-t="scan">Scan</button>
 </div>
 <div class="wrap" id="view"></div>
 <footer>Prototype · content shown is traditional/sample and should be validated by your sangh. Sunrise/sunset computed; tithi is approximate — connect an authoritative panchang source for production.</footer>
