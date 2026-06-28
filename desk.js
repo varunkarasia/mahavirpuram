@@ -34,7 +34,7 @@ function seed(){
  }
  // one anonymous hundi sample
  seq++;dons.push({id:uid(),receiptNo:'MVP/'+fy+'/'+String(seq).padStart(4,'0'),date:today(),donorId:null,donorName:'Anonymous (Hundi)',pan:'',anonymous:true,amount:8500,mode:'Cash',fundId:funds[0].id,fund:funds[0].name,note:'Daan box collection',by:'Seed'});
- return {funds:funds,donors:donors,donations:dons,seq:seq,settings:{trust:'Shree Mahavirpuram',regOffice:'7 Gokul Complex, Opp. Nagri Eye Hospital, Ellisbridge, Ahmedabad 380007',project:'FP No. 47/1 & 2, Koba-Raisan Rd., Near Raheja Mindspace, Off PDPU Rd., Juna Koba, Gandhinagar 382421, Gujarat, India',pan:'AAETS1715Q',reg80g:'AAETS1715QF20215',trustReg:'E/12724 AMD dt. 03 Dec 1999',fy:fy}};
+ return {funds:funds,donors:donors,donations:dons,seq:seq,settings:{trust:'Shree Mahavirpuram',regOffice:'7 Gokul Complex, Opp. Nagri Eye Hospital, Ellisbridge, Ahmedabad 380007',project:'FP No. 47/1 & 2, Koba-Raisan Rd., Near Raheja Mindspace, Off PDPU Rd., Juna Koba, Gandhinagar 382421, Gujarat, India',pan:'AAETS1715Q',reg80g:'AAETS1715QF20215',trustReg:'E/12724 AMD dt. 03 Dec 1999',panThreshold:2000,fy:fy}};
 }
 function load(){try{var r=localStorage.getItem(KEY);if(r)return JSON.parse(r);}catch(e){}return seed();}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
@@ -243,14 +243,34 @@ R.funds=function(){
 };
 
 R.online=function(){
+ var thr=Number(S.settings.panThreshold!=null?S.settings.panThreshold:2000);
+ var INDUS='https://induscollect.indusind.com/pay/index.php/easyPay/SHREE_MAHAVIR_PURAM/makePayment?mid=VlVZMVBKUFRMdzRlYXRZS0JwOHIwZz09&role_id=&emp_id=&cmp=UjdkRHhoTDZ6VE9NcVNqbDVYYXJ3dz09';
  main.innerHTML=top('Online Payments')+PROTO+
- '<div class="grid2"><div class="panel"><h3>Donor online payment</h3><div class="small muted" style="margin-bottom:10px">Demo of the donor-facing flow. In production this calls Razorpay/Cashfree with your live keys (server-side order + signature verification) and auto-creates the receipt on success.</div><div class="grid2"><div><label>Donor name</label><input id="oN" placeholder="Name"></div><div><label>PAN (optional)</label><input id="oP" maxlength="10"></div><div><label>Amount (₹)</label><input id="oA" type="number" min="1" value="1100"></div><div><label>Fund</label><select id="oF">'+fundOptions('General Donation')+'</select></div></div><div class="row" style="margin-top:14px"><button class="btn green" id="rzp">Pay with Razorpay (demo)</button><a class="btn ghost" href="https://induscollect.indusind.com/pay/index.php/easyPay/SHREE_MAHAVIR_PURAM/makePayment?mid=VlVZMVBKUFRMdzRlYXRZS0JwOHIwZz09&role_id=&emp_id=&cmp=UjdkRHhoTDZ6VE9NcVNqbDVYYXJ3dz09" target="_blank" rel="noopener">Pay via IndusInd</a></div></div>'+
+ '<div class="grid2"><div class="panel"><h3>Donor online payment</h3><div class="small muted" style="margin-bottom:10px">Demo of the donor-facing flow. In production this calls Razorpay/Cashfree with your live keys (server-side order + signature verification) and auto-creates the receipt on success.</div><div class="grid2"><div><label>Donor name <span style="color:#BE2A1E">*</span></label><input id="oN" placeholder="Name"></div><div><label id="oPlab">PAN (optional)</label><input id="oP" maxlength="10" placeholder="ABCDE1234F" style="text-transform:uppercase"></div><div><label>Amount (₹) <span style="color:#BE2A1E">*</span></label><input id="oA" type="number" min="1" value="1100"></div><div><label>Fund</label><select id="oF">'+fundOptions('General Donation')+'</select></div></div><div id="oMsg" class="small" style="margin-top:10px;min-height:18px"></div><div class="row" style="margin-top:10px"><button class="btn green" id="rzp">Pay with Razorpay (demo)</button><button class="btn ghost" id="indus">Pay via IndusInd</button></div></div>'+
  '<div class="panel"><h3>Recent online donations</h3><table><thead><tr><th>Date</th><th>Donor</th><th class="right">Amount</th><th></th></tr></thead><tbody id="onlineList"></tbody></table></div></div>';
+ function panOk(p){return /^[A-Z]{5}[0-9]{4}[A-Z]$/.test(p);}
+ function setBtn(sel,on){var b=$(sel);if(!b)return;b.disabled=!on;b.style.opacity=on?'':'0.45';b.style.cursor=on?'':'not-allowed';}
+ function validate(){
+  var n=$('#oN').value.trim();var amt=+$('#oA').value;var p=$('#oP').value.trim().toUpperCase();
+  var needPan=amt>=thr;
+  $('#oPlab').innerHTML=needPan?'PAN <span style="color:#BE2A1E">* required above '+fmt(thr)+'</span>':'PAN (optional)';
+  var ok=true,msg='',err=false;
+  if(!n){ok=false;msg='Enter the donor name to continue.';err=true;}
+  else if(!(amt>=1)){ok=false;msg='Enter a valid amount.';err=true;}
+  else if(needPan&&!p){ok=false;msg='PAN is mandatory for donations of '+fmt(thr)+' or more.';err=true;}
+  else if(needPan&&!panOk(p)){ok=false;msg='Enter a valid PAN, e.g. ABCDE1234F.';err=true;}
+  else {msg=needPan?'PAN captured — required at this amount.':'Ready. PAN optional below '+fmt(thr)+'.';}
+  var m=$('#oMsg');m.textContent=msg;m.style.color=err?'#BE2A1E':'#6E5C4D';
+  setBtn('#rzp',ok);setBtn('#indus',ok);
+  return ok;
+ }
  function drawList(){$('#onlineList').innerHTML=S.donations.filter(function(d){return d.mode==='Online'||d.mode==='Card'||d.mode==='UPI';}).slice(0,8).map(function(d){return '<tr><td>'+esc(d.date)+'</td><td>'+esc(d.donorName)+'</td><td class="amt right">'+fmt(d.amount)+'</td><td class="right"><button class="btn ghost sm" data-act="receipt" data-id="'+d.id+'">Receipt</button></td></tr>';}).join('');}
- $('#rzp').addEventListener('click',function(){var n=$('#oN').value.trim()||'Online Donor';var amt=+$('#oA').value;if(!amt){toast('Enter amount');return;}var fund=$('#oF').value;
-  setTimeout(function(){var ex=S.donors.filter(function(x){return x.name.toLowerCase()===n.toLowerCase();})[0];var did;if(ex){did=ex.id;}else{var nd={id:uid(),name:n,pan:$('#oP').value.trim().toUpperCase(),city:'',phone:'',email:''};S.donors.push(nd);did=nd.id;}addDonation({date:today(),donorId:did,donorName:n,pan:$('#oP').value.trim().toUpperCase(),anonymous:false,amount:amt,mode:'Online',fundId:S.funds.filter(function(f){return f.name===fund;})[0].id,fund:fund,note:'Razorpay (demo) txn '+uid().toUpperCase(),by:'Online'});save();toast('Payment success (demo) · receipt generated');showReceipt(S.donations[0].id);drawList();},500);
+ ['#oN','#oP','#oA'].forEach(function(s){$(s).addEventListener('input',validate);});
+ $('#rzp').addEventListener('click',function(){if(!validate())return;var n=$('#oN').value.trim();var amt=+$('#oA').value;var fund=$('#oF').value;var pan=$('#oP').value.trim().toUpperCase();
+  setTimeout(function(){var ex=S.donors.filter(function(x){return x.name.toLowerCase()===n.toLowerCase();})[0];var did;if(ex){did=ex.id;if(pan&&!ex.pan)ex.pan=pan;}else{var nd={id:uid(),name:n,pan:pan,city:'',phone:'',email:''};S.donors.push(nd);did=nd.id;}addDonation({date:today(),donorId:did,donorName:n,pan:pan,anonymous:false,amount:amt,mode:'Online',fundId:S.funds.filter(function(f){return f.name===fund;})[0].id,fund:fund,note:'Razorpay (demo) txn '+uid().toUpperCase(),by:'Online'});save();toast('Payment success (demo) · receipt generated');showReceipt(S.donations[0].id);drawList();},500);
  });
- drawList();
+ $('#indus').addEventListener('click',function(){if(!validate())return;window.open(INDUS,'_blank','noopener');});
+ drawList();validate();
 };
 
 R.reports=function(){
@@ -278,9 +298,10 @@ R.settings=function(){
  '<div><label>Project address</label><input id="sPR" value="'+esc(s.project||'')+'"></div>'+
  '<div class="grid2"><div><label>PAN</label><input id="sPan" value="'+esc(s.pan)+'"></div><div><label>Financial year</label><input id="sFy" value="'+esc(s.fy)+'"></div></div>'+
  '<div class="grid2"><div><label>80G registration</label><input id="s80" value="'+esc(s.reg80g)+'"></div><div><label>Trust registration</label><input id="sTR" value="'+esc(s.trustReg||'')+'"></div></div>'+
+ '<div class="grid2"><div><label>PAN-mandatory threshold (₹)</label><input id="sThr" type="number" min="0" value="'+esc(String(s.panThreshold!=null?s.panThreshold:2000))+'"></div><div><label>&nbsp;</label><div class="small muted" style="padding-top:9px">Donors paying this amount or more online must enter a valid PAN before the pay buttons activate.</div></div></div>'+
  '</div><div class="row" style="margin-top:14px"><button class="btn" id="saveSet">Save settings</button></div>'+
  '<div class="banner" style="margin-top:16px">These details print on every receipt. For foreign donations a separate FCRA-registered account and reporting are required.</div></div>';
- $('#saveSet').addEventListener('click',function(){s.trust=$('#sTrust').value;s.regOffice=$('#sRO').value;s.project=$('#sPR').value;s.pan=$('#sPan').value;s.fy=$('#sFy').value;s.reg80g=$('#s80').value;s.trustReg=$('#sTR').value;save();toast('Settings saved');});
+ $('#saveSet').addEventListener('click',function(){s.trust=$('#sTrust').value;s.regOffice=$('#sRO').value;s.project=$('#sPR').value;s.pan=$('#sPan').value;s.fy=$('#sFy').value;s.reg80g=$('#s80').value;s.trustReg=$('#sTR').value;s.panThreshold=+$('#sThr').value||0;save();toast('Settings saved');});
 };
 function download(name,content){var b=new Blob([content],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();}
 
